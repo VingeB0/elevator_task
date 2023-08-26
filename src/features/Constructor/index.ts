@@ -1,1 +1,1 @@
-export * from "./Constructor.tsx"
+export * from "./Constructor.tsx";
