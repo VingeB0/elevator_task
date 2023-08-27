@@ -1,4 +1,5 @@
 {
+  "homepage": "https://VingeB0.github.io/elevator_task",
   "name": "elevator-task",
   "private": true,
   "version": "0.0.0",
@@ -11,7 +12,9 @@
     "fmt": "prettier --check .",
     "fmt:fix": "prettier --write .",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -36,6 +39,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "jest": "^29.6.4",
     "jest-environment-jsdom": "^29.6.4",
     "prettier": "^3.0.2",

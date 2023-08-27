@@ -10,7 +10,6 @@ import {
   StyledLabel,
   StyledSection,
 } from "./styled";
-import React, { SetStateAction } from "react";
 
 type FormTypes = {
   elevators: number;
@@ -21,7 +20,7 @@ export const Constructor = ({
   setBuildingStore,
   buildingStore,
 }: {
-  setBuildingStore: React.Dispatch<SetStateAction<BuildingProps>>;
+  setBuildingStore: Function;
   buildingStore: BuildingProps;
 }) => {
   const {
