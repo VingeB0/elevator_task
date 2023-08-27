@@ -1,34 +1,51 @@
-ELEVATOR EXERCISE
+## npm run dev - run dev server
 
-PART 1 – Setup base solution according to Standards
-You are required to create a base solution according to the standards below:
+## npm run lint - run liner
 
-    •	General requirements
-    •	The solution structure and code should be developed using best practices.
-    •	Use design patterns acceptable for React and TypeScript.
-    •	Add at least one test
-    •	Use best practices to split the application into components.
-    •	Optional - Add some simple visualization (such as downloading an image for a floor or a sound for when the elevator arrives).
+## npm run fmt - check prettier
 
-    •	Preferred tools, technologies, and packages:
-    •	React, Typescript, HTML, CSS
-    •	Responsive design, styled-components.
-    •	Styled System, theme-ui, radix forms , react-form-hook
-    •	Vite package manager
-    •	Jest testing package
+## npm run fmt:fix - fix prettier
 
-PART 2 – The Application
+## npm run test - run tests
 
-You are required to write an elevator control software that contains the following parts:
+## Elevator Exercise
 
-    •	UI - It should display a building with floors separated by numbers and an elevator image. When a floor is clicked, the elevator should be called to that floor. The UI should display a moving elevator that stops at a particular floor.
+## Part 1 – Setup Base Solution According to Standards
 
-    •	Logic - When the first person calls the elevator, it starts to move. So, a non-limited number of people on different floors can call the elevator, and the elevator will arrive at the floor in the order it was called. When multiple elevators exist in the same building, and a person calls an elevator, you should detect the one that can arrive faster.
+You are required to create a base solution according to the following standards:
 
-Example 1:
-A person calls the elevator on floor 7, and it is moving. Elevator number 1 starts moving and is now passing floor 2. Another person calls the elevator on floor 5, but since elevator 1 needs to arrive at floor 7 first, elevator 2 starts moving.
+- **General Requirements**
 
-Example 2:
-A person calls the elevator on floor 7, and elevator number 1 has now stopped at floor 7. Another person calls the elevator on floor 5. In this case, elevator number 1 is closer to the person, and they will be picked up from floor 5.
+  - Develop the solution structure and code using best practices.
+  - Use design patterns acceptable for React and TypeScript.
+  - Include at least one test.
+  - Split the application into components using best practices.
+  - Optional: Add simple visualizations, such as images for floors or sounds for elevator arrivals.
 
-The solution should be dynamic, so the UI should be able to display a dynamic number of buildings with a dynamic number of elevators.
+- **Preferred Tools, Technologies, and Packages**
+  - React, TypeScript, HTML, CSS.
+  - Responsive design with styled-components.
+  - Styled System, theme-ui, radix forms, react-form-hook.
+  - Vite package manager.
+  - Jest testing package.
+
+## Part 2 – The Application
+
+You are required to write an elevator control software that consists of the following parts:
+
+- **UI**
+
+  - Display a building with floors separated by numbers and an elevator image.
+  - When a floor is clicked, call the elevator to that floor.
+  - Display a moving elevator that stops at a specific floor.
+
+- **Logic**
+  - When the first person calls the elevator, it starts to move.
+  - An unlimited number of people on different floors can call the elevator.
+  - The elevator arrives at floors in the order it was called.
+  - When multiple elevators exist, detect the one that can arrive faster.
+
+**Example 1:**
+
+- Person calls elevator on floor 7, and it's moving.
+- Elevator number 1 starts moving

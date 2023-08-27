@@ -1,5 +1,16 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Props } from "../../hooks";
+import { BuildingProps } from "../../hooks";
+import {
+  StyledButton,
+  StyledError,
+  StyledErrorsWrapper,
+  StyledForm,
+  StyledInput,
+  StyledInputsWrapper,
+  StyledLabel,
+  StyledSection,
+} from "./styled";
+import React, { SetStateAction } from "react";
 
 type FormTypes = {
   elevators: number;
@@ -10,8 +21,8 @@ export const Constructor = ({
   setBuildingStore,
   buildingStore,
 }: {
-  setBuildingStore: Function;
-  buildingStore: Props;
+  setBuildingStore: React.Dispatch<SetStateAction<BuildingProps>>;
+  buildingStore: BuildingProps;
 }) => {
   const {
     register,
@@ -25,42 +36,43 @@ export const Constructor = ({
   const disabled = !!errors.elevators || !!errors.floors;
 
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div
-          style={{
-            display: "flex",
-            gap: "5px",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <label>
+    <StyledSection>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledInputsWrapper>
+          <StyledLabel>
             Elevators:
-            <input
+            <StyledInput
               defaultValue={buildingStore.elevators}
               type="number"
               {...register("elevators", {
                 required: true,
+                min: 2,
               })}
             />
-          </label>
+          </StyledLabel>
 
-          <label>
+          <StyledLabel>
             Floors:
-            <input
+            <StyledInput
               defaultValue={buildingStore.floors}
               type="number"
-              {...register("floors", { required: true })}
+              {...register("floors", {
+                required: true,
+                min: 2,
+              })}
             />
-          </label>
-          <button disabled={disabled}>rebuild</button>
-        </div>
-        <div>
-          {errors.elevators && <span>Elevators cannot be empty</span>}
-          {errors.floors && <span>Floors cannot be empty</span>}
-        </div>
-      </form>
-    </section>
+          </StyledLabel>
+          <StyledButton disabled={disabled}>rebuild</StyledButton>
+        </StyledInputsWrapper>
+        <StyledErrorsWrapper>
+          {errors.elevators && (
+            <StyledError>Elevators cannot be empty or less than 2</StyledError>
+          )}
+          {errors.floors && (
+            <StyledError>Floors cannot be empty or less than 2</StyledError>
+          )}
+        </StyledErrorsWrapper>
+      </StyledForm>
+    </StyledSection>
   );
 };

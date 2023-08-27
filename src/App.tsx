@@ -1,9 +1,7 @@
-import "./App.css";
 import { Controls, Constructor, Construction } from "./features";
 import { useBuildingStore } from "./hooks";
 import { useEffect, useState } from "react";
-
-const ANIMATION_TIME = 300;
+import { ANIMATION_TIME } from "./config/config.ts";
 
 type ElevatorAction = "available" | "busy";
 type MovingElevator = {
@@ -14,59 +12,59 @@ export type MovingElevators = MovingElevator[];
 
 function App() {
   const { buildingStore, setBuildingStore } = useBuildingStore();
-  // console.log('buildingStore', buildingStore)
 
   const [movingElevators, setMovingElevators] = useState<MovingElevators>([]);
-  // console.log('movingElevators', movingElevators)
 
   const setElevatorFloor = (floor: number) => {
-    console.log("--- -- -- start -- -- ---");
-    console.log("floor", floor);
+    //do nothing if all elevators are busy or there is already an elevator on the floor
     const existsFloor = movingElevators.find((item) => item.floor === floor);
     const available = movingElevators.find(
       (item) => item.action === "available",
     );
     if (existsFloor || !available) return false;
 
+    //find the nearest elevator
     const floorsDiff = movingElevators.map((elevator, index) => {
       const diff = Math.abs(floor - elevator.floor);
       return { index: index, diff: diff, action: elevator.action };
     });
-    console.log("floorsDiff", floorsDiff);
+
     const minDiff = Math.min(
       ...floorsDiff
         .filter((item) => item.action === "available")
         .map((item) => item.diff),
     );
-    console.log("minDiff", minDiff);
+
     const indexMinDiff = floorsDiff
       .map((item) =>
         item.diff && item.action === "available" ? item.diff : null,
       )
       .indexOf(minDiff);
 
-    console.log("indexMinDiff", indexMinDiff);
-    // console.log('floorsDiff', floorsDiff)
+    //move the nearest elevator that we found
     const move = movingElevators.map((elevator, index) => {
       if (index === indexMinDiff) {
         return { floor: floor, action: "busy" as ElevatorAction };
       }
       return elevator;
     });
-    console.log("move", move);
-    console.log("--- -- end -- ---");
+
     setMovingElevators(move);
-    console.log("ANIMATION_TIME * minDiff 1", ANIMATION_TIME * minDiff);
-    setTimeout(() => {
-      setMovingElevators((prevState) => {
-        return prevState.map((elevator, index) => {
-          if (index === indexMinDiff) {
-            return { ...elevator, action: "available" as ElevatorAction };
-          }
-          return elevator;
+
+    //make the elevator available again after it has arrived at the appointed time after the time (ANIMATION_TIME)
+    setTimeout(
+      () => {
+        setMovingElevators((prevState) => {
+          return prevState.map((elevator, index) => {
+            if (index === indexMinDiff) {
+              return { ...elevator, action: "available" as ElevatorAction };
+            }
+            return elevator;
+          });
         });
-      });
-    }, ANIMATION_TIME * minDiff);
+      },
+      ANIMATION_TIME * 1000 * minDiff,
+    );
   };
 
   useEffect(() => {

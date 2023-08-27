@@ -1,22 +1,18 @@
 import { useState } from "react";
+import { DEFAULT_ELEVATORS, DEFAULT_FLOORS } from "../config/config.ts";
 
-export type Props = {
+export type BuildingProps = {
   floors: number;
   elevators: number;
 };
 
-const DEFAULT_ELEVATORS: number = 6;
-const DEFAULT_FLOORS: number = 9;
-
 export function useBuildingStore() {
-  const [building, setBuilding] = useState<Props>({
+  const [building, setBuilding] = useState<BuildingProps>({
     floors: DEFAULT_FLOORS,
     elevators: DEFAULT_ELEVATORS,
   });
 
-  // console.log('store', building)
-
-  const setBuildingStore = (store: Props) => setBuilding(store);
+  const setBuildingStore = (store: BuildingProps) => setBuilding(store);
 
   return {
     buildingStore: building,

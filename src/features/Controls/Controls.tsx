@@ -1,10 +1,10 @@
-import React from 'react';
-import { ControlButton } from "../../components/ui";
-import { Props } from "../../hooks";
+import { ControlButton } from "../../components";
+import { StyledParagraph, StyledSection, StyledWrapper } from "./styled";
+import { BuildingProps } from "../../hooks";
 
 type ControlsProps = {
-  buildingStore: Props;
-  setElevatorFloor: Function;
+  buildingStore: BuildingProps;
+  setElevatorFloor: (floor: number) => void;
 };
 
 export const Controls = ({
@@ -12,17 +12,9 @@ export const Controls = ({
   setElevatorFloor,
 }: ControlsProps) => {
   return (
-    <section>
-      <p style={{ marginBottom: "5px" }}>select the floor you need</p>
-      <div
-        style={{
-          marginBottom: "10px",
-          display: "flex",
-          justifyContent: "center",
-          flexFlow: "wrap row",
-          gap: "5px",
-        }}
-      >
+    <StyledSection>
+      <StyledParagraph>Select the floor you need</StyledParagraph>
+      <StyledWrapper>
         {Array.from({ length: buildingStore.floors }, (_, index) => (
           <ControlButton
             onClick={() => setElevatorFloor(index + 1)}
@@ -30,7 +22,7 @@ export const Controls = ({
             text={index + 1}
           />
         ))}
-      </div>
-    </section>
+      </StyledWrapper>
+    </StyledSection>
   );
 };
