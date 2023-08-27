@@ -1,4 +1,4 @@
-- ## ## [link](https://vingeb0.github.io/elevator_task/)
+## [link](https://vingeb0.github.io/elevator_task/)
 - ### npm run dev - run dev server
 - ### npm run lint - run liner
 - ### npm run fmt - check prettier
