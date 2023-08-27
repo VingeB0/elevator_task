@@ -1,6 +1,6 @@
 ## [link](https://vingeb0.github.io/elevator_task/)
 - ### npm run dev - run dev server
-- ### npm run lint - run liner
+- ### npm run lint - run linter
 - ### npm run fmt - check prettier
 - ### npm run fmt:fix - fix prettier
 - ### npm run test - run tests
